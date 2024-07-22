@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import Header from './components/Header';
 
 function App() {
   const [data, setData] = useState([]);
@@ -12,6 +13,7 @@ function App() {
 
   return (
     <div className="App">
+      <Header />
       <h1>Data from PostgreSQL</h1>
       <ul>
         <div>outside</div>
