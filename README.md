@@ -1,7 +1,12 @@
-# Getting Started with Create React App
-
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
+# How to run the online shopping app
+1. Clone the repo
+2. Start the backend server. In the terminal, type: `cd react-postgres-app`, `node server.js`
+3. You should see `Server running on port 5000`
+4. Now, start the React app. Enter the `online-shopping-app` directory.
+   If you're currently in `online-shopping-app\react-postgres-app`, type `cd ..`
+   If you're already in the `online-shopping-app` directory, move onto the next step
+5. Run `npm start`
+   
 ## Available Scripts
 
 In the project directory, you can run:
