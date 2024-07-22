@@ -18,7 +18,7 @@ function App() {
         {data.map(item => (
           <>
           <div>inside</div>
-          <li key={item.id}>{item.name}</li>
+          <li key={item.suppid}>{item.suppname}</li>
           </>
         ))}
       </ul>
