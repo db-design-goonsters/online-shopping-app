@@ -1,98 +1,99 @@
 .header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #d19200; /* Updated background color */
-    padding: 10px 20px;
-    color: white;
-  }
-  
-  .header-logo {
-    display: flex;
-    align-items: center; /* Ensure children are centered vertically */
-  }
-  
-  .header-logo i {
-    margin-right: 10px; /* Space between icon and text */
-    font-size: 24px; /* Adjust the size of the icon if needed */
-    margin-top: 2px; /* Slightly shift the icon down */
-  }
-  
-  .header-logo span {
-    font-size: 24px;
-    font-weight: bold;
-  }
-  
-  .header-nav a {
-    margin: 0 10px;
-    text-decoration: none;
-    color: white;
-    font-size: 16px;
-  }
-  
-  .header-search-cart {
-    display: flex;
-    align-items: center;
-  }
-  
-  .header-search-cart input {
-    border: none;
-    padding: 5px 10px;
-    border-radius: 5px;
-    margin-right: 10px;
-  }
-  
-  .header-search-cart input::placeholder {
-    color: #1976d2;
-  }
-  
-  .header-search-cart i {
-    margin-right: 10px;
-    font-size: 18px;
-    cursor: pointer;
-  }
-  
-  .header-profile {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 30px;
-    height: 30px;
-    background-color: #cfcfcf;
-    border-radius: 50%;
-    color: #1976d2;
-    font-weight: bold;
-    cursor: pointer;
-  }
-  
-  .header-profile {
-    position: relative;
-    cursor: pointer;
-  }
-  
-  .profile-dropdown {
-    position: absolute;
-    top: 40px;
-    right: 0;
-    background-color: white;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    border-radius: 5px;
-    z-index: 1000;
-  }
-  
-  .profile-dropdown a {
-    display: block;
-    padding: 10px;
-    text-decoration: none;
-    color: black;
-    border-bottom: 1px solid #ccc;
-  }
-  
-  .profile-dropdown a:hover {
-    background-color: #f0f0f0;
-  }
-  
-  .profile-dropdown a:last-child {
-    border-bottom: none;
-  }
-  
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #d19200; /* Updated background color */
+  padding: 10px 20px;
+  color: white;
+}
+
+.header-logo {
+  display: flex;
+  align-items: center; /* Ensure children are centered vertically */
+}
+
+.header-logo i {
+  margin-right: 10px; /* Space between icon and text */
+  font-size: 24px; /* Adjust the size of the icon if needed */
+  margin-top: 2px; /* Slightly shift the icon down */
+}
+
+.header-logo span {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.header-nav a {
+  margin: 0 10px;
+  text-decoration: none;
+  color: white;
+  font-size: 16px;
+}
+
+.header-search-cart {
+  display: flex;
+  align-items: center;
+}
+
+.header-search-cart input {
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  margin-right: 10px;
+}
+
+.header-search-cart input::placeholder {
+  color: #1976d2;
+}
+
+.header-search-cart i {
+  margin-right: 10px;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.header-profile {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30px;
+  height: 30px;
+  background-color: #cfcfcf;
+  border-radius: 50%;
+  color: #1976d2;
+  font-weight: bold;
+  cursor: pointer;
+  position: relative;
+}
+
+.header-profile i {
+  font-size: 18px;
+  color: #1976d2;
+  position: absolute;
+}
+
+.profile-dropdown {
+  position: absolute;
+  top: 40px;
+  right: 0;
+  background-color: white;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  z-index: 1000;
+}
+
+.profile-dropdown a {
+  display: block;
+  padding: 10px;
+  text-decoration: none;
+  color: black;
+  border-bottom: 1px solid #ccc;
+}
+
+.profile-dropdown a:hover {
+  background-color: #f0f0f0;
+}
+
+.profile-dropdown a:last-child {
+  border-bottom: none;
+}

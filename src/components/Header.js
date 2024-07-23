@@ -1,10 +1,14 @@
 import React, { useState } from 'react';
 import './Header.css';
 import LoginModal from './LoginModal';
+import LogoutModal from './LogoutModal';
+import AboutModal from './AboutModal';
 
 const Header = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [showLoginModal, setShowLoginModal] = useState(false);
+  const [showLogoutModal, setShowLogoutModal] = useState(false);
+  const [showAboutModal, setShowAboutModal] = useState(false);
 
   const handleProfileClick = () => {
     if (!isLoggedIn) {
@@ -19,16 +23,17 @@ const Header = () => {
 
   const handleLogout = () => {
     setIsLoggedIn(false);
+    setShowLogoutModal(true);
   };
 
   return (
     <header className="header">
       <div className="header-logo">
         <i className="fa-solid fa-shop"></i>
-        <span>eCommerce</span>
+        <span>Big Web Dev Shop</span>
       </div>
       <nav className="header-nav">
-        <a href="#">ABOUT</a>
+        <a href="#" onClick={() => setShowAboutModal(true)}>ABOUT</a>
         {isLoggedIn && <a href="#">ADMIN TOOLS</a>}
       </nav>
       <div className="header-search-cart">
@@ -46,6 +51,8 @@ const Header = () => {
         </div>
       </div>
       {showLoginModal && <LoginModal onClose={() => setShowLoginModal(false)} onLogin={handleLogin} />}
+      {showLogoutModal && <LogoutModal onClose={() => setShowLogoutModal(false)} />}
+      {showAboutModal && <AboutModal onClose={() => setShowAboutModal(false)} />}
     </header>
   );
 };
