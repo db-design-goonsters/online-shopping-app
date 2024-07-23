@@ -17,6 +17,7 @@ const pool = new Pool({
   port: 5432,
 });
 
+// Endpoint to get data from PostgreSQL
 app.get('/api/data', async (req, res) => {
   try {
     const result = await pool.query('SELECT * FROM supplier');
@@ -24,6 +25,18 @@ app.get('/api/data', async (req, res) => {
   } catch (error) {
     console.error(error);
     res.status(500).send('Server Error');
+  }
+});
+
+// Endpoint to handle login
+app.post('/login', (req, res) => {
+  const { username, creditCard, isAdmin } = req.body;
+  
+  // Dummy validation logic for example purposes
+  if (username && creditCard) {
+    res.json({ message: 'Login successful', isAdmin });
+  } else {
+    res.status(400).json({ message: 'Login failed' });
   }
 });
 
