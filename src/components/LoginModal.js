@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 import './LoginModal.css';
 
 const LoginModal = ({ onClose, onLogin }) => {
@@ -22,11 +23,18 @@ const LoginModal = ({ onClose, onLogin }) => {
     setIsAdmin(!isAdmin);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Handle the login logic here
-    console.log(formData);
-    onLogin();
+    try {
+      const response = await axios.post('http://localhost:5000/login', {
+        ...formData,
+        isAdmin
+      });
+      console.log(response.data);
+      onLogin();
+    } catch (error) {
+      console.error('There was an error logging in:', error);
+    }
   };
 
   return (

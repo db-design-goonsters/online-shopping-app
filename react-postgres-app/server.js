@@ -30,10 +30,10 @@ app.get('/api/data', async (req, res) => {
 
 // Endpoint to handle login
 app.post('/login', (req, res) => {
-  const { username, creditCard, isAdmin } = req.body;
+  const { username, accountBalance, shippingAddress, isAdmin, warehouseId, adminName, adminAddress, adminSalary, adminTitle } = req.body;
   
   // Dummy validation logic for example purposes
-  if (username && creditCard) {
+  if (username && accountBalance && shippingAddress) {
     res.json({ message: 'Login successful', isAdmin });
   } else {
     res.status(400).json({ message: 'Login failed' });
