@@ -22,6 +22,15 @@ function App() {
           </>
         ))}
       </ul>
+      <ul>
+        <div>outside</div>
+        {data.map(item => (
+          <>
+          <div>inside</div>
+          <li key={item.suppid}>{item.supplieraddress}</li>
+          </>
+        ))}
+      </ul>
     </div>
   );
 }
