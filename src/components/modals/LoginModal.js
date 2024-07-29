@@ -25,13 +25,14 @@ const LoginModal = ({ onClose, onLogin }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log('Form Data:', { ...formData, isAdmin }); // Log form data for debugging
     try {
       const response = await axios.post('http://localhost:5000/login', {
         ...formData,
         isAdmin
       });
       console.log(response.data);
-      onLogin();
+      onLogin(formData.username, isAdmin, formData.adminName);
     } catch (error) {
       console.error('There was an error logging in:', error);
     }
@@ -40,32 +41,40 @@ const LoginModal = ({ onClose, onLogin }) => {
   return (
     <div className="modal-overlay">
       <div className="modal">
-        <h2>Login:</h2>
-        <label>
-          Admin?
-          <input type="checkbox" checked={isAdmin} onChange={handleAdminToggle} />
-        </label>
-        <input 
-          type="text" 
-          name="username" 
-          placeholder="Username" 
-          value={formData.username}
-          onChange={handleChange}
-        />
-        <input 
-          type="text" 
-          name="accountBalance" 
-          placeholder="Account Balance" 
-          value={formData.accountBalance}
-          onChange={handleChange}
-        />
-        <input 
-          type="text" 
-          name="shippingAddress" 
-          placeholder="Shipping Address" 
-          value={formData.shippingAddress}
-          onChange={handleChange}
-        />
+        <button className="close-modal" onClick={onClose}>X</button>
+        <h2>{isAdmin ? 'Admin Login' : 'User Login'}</h2>
+        <div className="admin-toggle">
+          <label>
+            Admin?
+            <input type="checkbox" checked={isAdmin} onChange={handleAdminToggle} />
+          </label>
+        </div>
+        {!isAdmin && (
+          <>
+            <input 
+              type="text" 
+              name="username" 
+              placeholder="Username" 
+              value={formData.username}
+              onChange={handleChange}
+            />
+            <input 
+              type="text" 
+              name="accountBalance" 
+              placeholder="Account Balance" 
+              value={formData.accountBalance}
+              onChange={handleChange}
+            />
+            <input 
+              type="text" 
+              name="shippingAddress" 
+              placeholder="Shipping Address" 
+              value={formData.shippingAddress}
+              onChange={handleChange}
+            />
+          </>
+        )}
+        
         {isAdmin && (
           <>
             <input 
@@ -109,7 +118,6 @@ const LoginModal = ({ onClose, onLogin }) => {
         <div className="signup-link">
           Need an account? <a href="#">SIGN UP</a>
         </div>
-        <button className="close-modal" onClick={onClose}>Close</button>
       </div>
     </div>
   );

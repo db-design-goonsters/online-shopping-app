@@ -5,7 +5,7 @@ const LogoutModal = ({ onClose }) => {
   useEffect(() => {
     const timer = setTimeout(() => {
       onClose();
-    }, 3000); // 3 seconds
+    }, 2000); // 2 seconds
 
     return () => clearTimeout(timer); // Cleanup the timer on component unmount
   }, [onClose]);

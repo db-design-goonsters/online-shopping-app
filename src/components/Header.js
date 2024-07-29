@@ -1,13 +1,10 @@
 import React, { useState } from 'react';
 import './Header.css';
-import LoginModal from './LoginModal';
-import LogoutModal from './LogoutModal';
-import AboutModal from './AboutModal';
+import LoginModal from './modals/LoginModal';
+import AboutModal from './modals/AboutModal';
 
-const Header = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+const Header = ({ isLoggedIn, isAdmin, onLogin, onLogout }) => {
   const [showLoginModal, setShowLoginModal] = useState(false);
-  const [showLogoutModal, setShowLogoutModal] = useState(false);
   const [showAboutModal, setShowAboutModal] = useState(false);
 
   const handleProfileClick = () => {
@@ -16,14 +13,9 @@ const Header = () => {
     }
   };
 
-  const handleLogin = () => {
-    setIsLoggedIn(true);
+  const handleLogin = (username, isAdmin, adminName) => {
+    onLogin(username, isAdmin, adminName);
     setShowLoginModal(false);
-  };
-
-  const handleLogout = () => {
-    setIsLoggedIn(false);
-    setShowLogoutModal(true);
   };
 
   return (
@@ -34,7 +26,7 @@ const Header = () => {
       </div>
       <nav className="header-nav">
         <a href="#" onClick={() => setShowAboutModal(true)}>ABOUT</a>
-        {isLoggedIn && <a href="#">ADMIN TOOLS</a>}
+        {isLoggedIn && isAdmin && <a href="#">ADMIN TOOLS</a>}
       </nav>
       <div className="header-search-cart">
         <input type="text" placeholder="Search..." />
@@ -45,13 +37,12 @@ const Header = () => {
           {isLoggedIn && (
             <div className="profile-dropdown">
               <a href="#">User Profile</a>
-              <a href="#" onClick={handleLogout}>Logout</a>
+              <a href="#" onClick={onLogout}>Logout</a>
             </div>
           )}
         </div>
       </div>
       {showLoginModal && <LoginModal onClose={() => setShowLoginModal(false)} onLogin={handleLogin} />}
-      {showLogoutModal && <LogoutModal onClose={() => setShowLogoutModal(false)} />}
       {showAboutModal && <AboutModal onClose={() => setShowAboutModal(false)} />}
     </header>
   );

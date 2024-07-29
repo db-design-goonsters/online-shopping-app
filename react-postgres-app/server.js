@@ -7,13 +7,13 @@ const app = express();
 const port = 5000;
 
 app.use(cors());
-app.use(bodyParser.json());
+app.use(bodyParser.json()); // Ensure body-parser is set to parse JSON
 
 const pool = new Pool({
   user: 'postgres',
   host: 'localhost',
   database: 'postgres',
-  password: 'your_password',
+  password: 'ary_password',
   port: 5432,
 });
 
@@ -29,14 +29,23 @@ app.get('/api/data', async (req, res) => {
 });
 
 // Endpoint to handle login
-app.post('/login', (req, res) => {
-  const { username, accountBalance, shippingAddress, isAdmin, warehouseId, adminName, adminAddress, adminSalary, adminTitle } = req.body;
+app.post('/login', async (req, res) => {
+  try {
+    console.log('Received login request:', req.body); // Log the request body
+    const { username, accountBalance, shippingAddress, isAdmin, warehouseId, adminName, adminAddress, adminSalary, adminTitle } = req.body;
   
-  // Dummy validation logic for example purposes
-  if (username && accountBalance && shippingAddress) {
-    res.json({ message: 'Login successful', isAdmin });
-  } else {
-    res.status(400).json({ message: 'Login failed' });
+    if (isAdmin) { 
+      // insert into staff table if user is admin
+      await pool.query(`insert into staff (warehouseId, name, address, salary, title) values (${warehouseId}, '${adminName}', '${adminAddress}', ${adminSalary}, '${adminTitle}')`);
+      res.json({ message: 'Login successful ', isAdmin });
+    } else { 
+      // insert into customer table if user is NOT admin
+      await pool.query(`insert into customer (name, accountBalance, shipAddress) values ('${username}', ${accountBalance}, '${shippingAddress}')`);
+      res.json({ message: 'Login successful ', isAdmin });
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Server Error');
   }
 });
 
